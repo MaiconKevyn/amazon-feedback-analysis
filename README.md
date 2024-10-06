@@ -1,6 +1,9 @@
 # Feedback Analysis with Zero-Shot Learning
 This project focuses on analyzing customer reviews from an **Amazon product reviews dataset**. The main goal is to classify both the **sentiments** and **topics** from user feedback to better understand which topics are most critical to the application’s performance. The deliverable is an interactive **Streamlit dashboard** that presents all the generated results, including sentiment distribution and topic analysis, allowing for a clear visualization of the insights derived from the data.
 
+## Workflow Overview
+![image](https://github.com/user-attachments/assets/0416d8de-bd33-4dad-b45a-8fe0f00c8b2e)
+
 ## Dataset
 The dataset used in this project is sourced from [Kaggle](https://www.kaggle.com/datasets/tarkkaanko/amazon). This dataset addresses some of the most important problems in e-commerce, such as the correct calculation of product ratings after sales and the accurate ordering of product comments. Solving these problems helps improve customer satisfaction, ensures product prominence for sellers, and provides a seamless shopping experience for buyers. Additionally, it helps prevent misleading comments from impacting customer decisions and causing financial or customer losses. By addressing these issues, e-commerce sites and sellers can increase sales, while customers enjoy a smoother purchasing journey.
 
