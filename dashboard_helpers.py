@@ -3,7 +3,6 @@ import pandas as pd
 from plotly.subplots import make_subplots
 
 def sentiment_overtime(df):
-    #df_grouped = df.groupby(['reviewTime', 'sentiment']).size().unstack(fill_value=0)
     df['reviewTime'] = pd.to_datetime(df['reviewTime'], format='%Y-%m-%d')
     df_grouped = df.groupby([df['reviewTime'].dt.to_period('M'), 'sentiment']).size().unstack(fill_value=0)
     df_grouped.index = df_grouped.index.to_timestamp()
@@ -29,7 +28,7 @@ def sentiment_overtime(df):
         height=400,
         title={
             'text': 'Normalized Sentiment Analysis Over Time',
-            'x': 0.5,  # Centraliza o título
+            'x': 0.5,  
             'xanchor': 'center',
             'yanchor': 'top',
             'font': dict(
@@ -41,23 +40,23 @@ def sentiment_overtime(df):
         xaxis_title='Date',
         yaxis_title='Proportion',
         xaxis=dict(
-            title_font=dict(size=18, color='black'),  # Tamanho e cor do título do eixo X
-            tickfont=dict(size=16, color='black'),  # Tamanho e cor dos ticks do eixo X
-            tickcolor='black'  # Cor dos ticks
+            title_font=dict(size=18, color='black'),  
+            tickfont=dict(size=16, color='black'),  
+            tickcolor='black'  
         ),
         yaxis=dict(
-            title_font=dict(size=18, color='black'),  # Tamanho e cor do título do eixo Y
-            tickfont=dict(size=16, color='black'),  # Tamanho e cor dos ticks do eixo Y
-            tickcolor='black'  # Cor dos ticks
+            title_font=dict(size=18, color='black'),  
+            tickfont=dict(size=16, color='black'),  
+            tickcolor='black'  
         ),
         legend_title='Sentiment',
         legend=dict(
-            title_font=dict(size=14, color='black'),  # Tamanho e cor do título da legenda
-            font=dict(size=12, color='black')  # Tamanho e cor dos itens da legenda
+            title_font=dict(size=14, color='black'),  
+            font=dict(size=12, color='black')  
         ),
         template='plotly_white',
-        plot_bgcolor='rgba(255, 255, 255, 1)',  # Fundo totalmente branco
-        paper_bgcolor='rgba(255, 255, 255, 1)'  # Fundo externo também branco
+        plot_bgcolor='rgba(255, 255, 255, 1)',  
+        paper_bgcolor='rgba(255, 255, 255, 1)'  
     )
     return fig_time_series
 
@@ -106,7 +105,6 @@ def overall_sentiment(df):
     )
 
     # Updating the layout to include a title, annotations, and overall chart dimensions.
-    # The title is centered, and annotations describe the two charts for clarity.
     fig.update_layout(
         title_text='Sentiment Distributions',
         
@@ -122,7 +120,6 @@ def overall_sentiment(df):
         height=400   # Set the height of the figure
     )
 
-    # Display the final combined visualization with the bar chart and pie chart side by side.
     return fig
 
 
@@ -131,7 +128,6 @@ def topic_distributions(df_filtered):
     topic_labels = real_topic_counts.index.tolist()
     topic_values = real_topic_counts.values.tolist()
 
-    # Cores personalizadas para cada tópico
     topic_colors = {
         'Product functionality': '#89CFF0',  # light blue
         'Price': '#FFA500',  # orange
@@ -141,17 +137,16 @@ def topic_distributions(df_filtered):
     }
     sorted_topic_colors = [topic_colors[label] for label in topic_labels]
 
-    # Cria o gráfico de barras horizontal para a contagem de tópicos
     fig_topics = go.Figure(go.Bar(
-        y=topic_labels,  # Coloca os rótulos no eixo Y
-        x=topic_values,  # Coloca os valores no eixo X
-        orientation='h',  # Define orientação horizontal
+        y=topic_labels,  
+        x=topic_values,  
+        orientation='h',  
         marker_color=sorted_topic_colors,
         text=topic_values,
         textposition='outside',
         textfont=dict(
-            color='black',  # Cor do texto nas barras
-            size=14  # Tamanho do texto nas barras
+            color='black',  
+            size=14  
         ),
         hoverinfo='x'
     ))
@@ -159,31 +154,31 @@ def topic_distributions(df_filtered):
     fig_topics.update_layout(
         title={
             'text': 'Distribution of Classified Topics',
-            'x': 0.5,  # Centraliza o título
+            'x': 0.5, 
             'xanchor': 'center',
             'yanchor': 'top',
             'font': dict(
                 family="Arial, sans-serif",
                 size=24,
-                color="black"  # Cor da fonte do título
+                color="black"  
             ),
         },
         yaxis_title='Topic',
         xaxis_title='Frequency',
         xaxis=dict(
-            title_font=dict(size=18, color='black'),  # Tamanho e cor do título do eixo X
-            tickfont=dict(size=15, color='black')  # Tamanho e cor dos ticks do eixo X
+            title_font=dict(size=18, color='black'),  
+            tickfont=dict(size=15, color='black')  
         ),
         yaxis=dict(
-            title_font=dict(size=18, color='black'),  # Tamanho e cor do título do eixo Y
-            tickfont=dict(size=15, color='black'),  # Tamanho e cor dos ticks do eixo Y
-            gridcolor='#e6e8eb',  # Cor das linhas de grade
+            title_font=dict(size=18, color='black'),  
+            tickfont=dict(size=15, color='black'),  
+            gridcolor='#e6e8eb',  
             gridwidth=0.5,
         ),
         width=1500,
         height=500,
-        plot_bgcolor='rgba(255, 255, 255, 1)',  # Fundo totalmente branco
-        paper_bgcolor='rgba(255, 255, 255, 1)'  # Fundo externo também branco
+        plot_bgcolor='rgba(255, 255, 255, 1)',  
+        paper_bgcolor='rgba(255, 255, 255, 1)'  
     )
 
     return fig_topics
@@ -218,38 +213,38 @@ def plot_sentiment_distribution_by_topic(df_filtered):
         barmode='relative',
         title={
             'text': 'Sentiment Distribution by Topic in Percentage',
-            'x': 0.5,  # Centraliza o título
+            'x': 0.5,  
             'xanchor': 'center',
             'yanchor': 'top',
             'font': dict(
-                family="Arial, sans-serif",  # Família da fonte
-                size=24,  # Tamanho da fonte do título
-                color="black"  # Cor da fonte do título
+                family="Arial, sans-serif",  
+                size=24,  
+                color="black"  
             ),
         },
         xaxis_title="Topics",
         yaxis_title="Percentage",
         xaxis=dict(
             categoryorder='total descending',
-            title_font=dict(size=18, color='black'),  # Tamanho e cor do título do eixo X
+            title_font=dict(size=18, color='black'),  
             tickfont=dict(size=16, color='black'),
             tickangle=0  
         ),
         yaxis=dict(
-            title_font=dict(size=18, color='black'),  # Tamanho e cor do título do eixo Y
+            title_font=dict(size=18, color='black'),  
             tickfont=dict(size=16, color='black'),
-            gridcolor='#e6e8eb',  # Cor das linhas de grade
-            gridwidth=0.5,  # Tamanho e cor dos ticks do eixo Y
+            gridcolor='#e6e8eb',  
+            gridwidth=0.5,  
         ),
         legend_title_text='Sentiment',
         legend=dict(
-            title_font=dict(size=14, color='black'),  # Tamanho e cor do título da legenda
-            font=dict(size=12, color='black')  # Tamanho e cor dos itens da legenda
+            title_font=dict(size=14, color='black'),  
+            font=dict(size=12, color='black')  
         ),
         width=1000,
         height=500,
-        plot_bgcolor='rgba(255, 255, 255, 1)',  # Fundo totalmente branco do gráfico
-        paper_bgcolor='rgba(255, 255, 255, 1)'  # Fundo externo também branco
+        plot_bgcolor='rgba(255, 255, 255, 1)',  
+        paper_bgcolor='rgba(255, 255, 255, 1)'  
     )
 
     return fig
@@ -308,24 +303,24 @@ def plot_topic_overtime(df_original):
             yaxis_title="Number of Mentions",
             legend_title='Topics',
             xaxis=dict(
-                title_font=dict(size=18, color='black'),  # Título do eixo X
+                title_font=dict(size=18, color='black'),  
                 tickmode='auto',
                 nticks=10,
-                tickfont=dict(size=16, color='black')  # Cor e tamanho dos ticks do eixo X
+                tickfont=dict(size=16, color='black')  
             ),
             yaxis=dict(
-                title_font=dict(size=18, color='black'),  # Título do eixo Y
+                title_font=dict(size=18, color='black'),  
                 tickfont=dict(size=16, color='black'),
-                gridcolor='#e6e8eb',  # Cor das linhas de grade
-                gridwidth=0.5,  # Cor e tamanho dos ticks do eixo Y
+                gridcolor='#e6e8eb',  
+                gridwidth=0.5,  
             ),
             legend=dict(
-                title_font=dict(color='black', size = 18),  # Título da legenda
-                font=dict(color='black')  # Itens da legenda
+                title_font=dict(color='black', size = 18),  
+                font=dict(color='black')  
             ),
             hovermode='x unified',
-            plot_bgcolor='rgba(255, 255, 255, 1)',  # Fundo totalmente branco do gráfico
-            paper_bgcolor='rgba(255, 255, 255, 1)'  # Fundo externo também branco
+            plot_bgcolor='rgba(255, 255, 255, 1)',  
+            paper_bgcolor='rgba(255, 255, 255, 1)'  
         )
 
         return fig_topic_overtime

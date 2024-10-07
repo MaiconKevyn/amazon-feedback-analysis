@@ -16,7 +16,7 @@ st.set_page_config(
 
 #Data
 
-df = pd.read_csv("topics_classified.csv")
+df = pd.read_csv("data/topics_classified.csv")
 df['reviewTime'] = pd.to_datetime(df['reviewTime'], format='%Y-%m-%d')
 
 max_date = df['reviewTime'].max()
