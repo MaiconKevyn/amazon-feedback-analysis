@@ -20,8 +20,8 @@ Before running the project, ensure you have all the required dependencies instal
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-repository.git
-   cd your-repository
+   git clone https://github.com/MaiconKevyn/amazon-feedback-analysis.git
+   cd amazon-feedback-analysis
 
 2. Install the required Python packages using pip:
     ```bash
